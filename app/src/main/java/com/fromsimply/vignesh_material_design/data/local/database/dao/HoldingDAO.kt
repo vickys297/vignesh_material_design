@@ -17,4 +17,13 @@ interface HoldingDAO {
 
     @Query("SELECT * FROM USER_HOLDINGS")
     fun getAllHolding(): PagingSource<Int, HoldingEntity>
+
+    @Query("SELECT SUM(ltp * quantity) FROM USER_HOLDINGS")
+    fun getCurrentValueSum(): Flow<Double>
+
+    @Query("SELECT SUM(avgPrice * quantity) FROM USER_HOLDINGS")
+    fun getTotalInvestmentSum(): Flow<Double>
+
+    @Query("SELECT SUM((close - ltp) * quantity) FROM USER_HOLDINGS")
+    fun getTodayPNL(): Flow<Double>
 }

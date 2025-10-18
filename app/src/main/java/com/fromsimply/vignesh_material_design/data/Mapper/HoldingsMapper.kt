@@ -13,7 +13,8 @@ object HoldingsMapper {
             quantity = value.quantity,
             ltp = value.ltp,
             avgPrice = value.avgPrice,
-            close = value.close
+            close = value.close,
+            totalPNL = ((value.ltp * value.quantity) - (value.avgPrice * value.quantity))
         )
     }
 
@@ -23,7 +24,7 @@ object HoldingsMapper {
             quantity = value.quantity,
             ltp = value.ltp,
             avgPrice = value.avgPrice,
-            close = value.close
+            close = value.close,
         )
     }
 }

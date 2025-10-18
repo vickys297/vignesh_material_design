@@ -6,9 +6,18 @@ import androidx.room.PrimaryKey
 
 @Entity(tableName = "USER_HOLDINGS")
 data class HoldingEntity(
-    @PrimaryKey val symbol: String, val quantity: Int, val ltp: Double, val avgPrice: Double, val close: Double
+    @PrimaryKey val symbol: String,
+    val quantity: Int,
+    val ltp: Double,
+    val avgPrice: Double,
+    val close: Double
 )
 
 data class HoldingUI(
-    val symbol: String, val quantity: Int, val ltp: Double, val avgPrice: Double, val close: Double
+    val symbol: String,
+    val quantity: Int,
+    val ltp: Double,
+    val avgPrice: Double,
+    val close: Double,
+    val totalPNL: Double
 )

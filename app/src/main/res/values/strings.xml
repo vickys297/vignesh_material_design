@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Holdings Listings</string>
+    <string name="preparing_for_launching_on_the_way_to_moon">Preparing for launching 🚀,\n on the way to moon 🌕...</string>
+    <string name="currently_you_do_not_have_holdings">Currently you do not have holdings 🤝...</string>
+    <string name="my_holdings">My Holdings</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="ltp">LTP:</string>
+    <string name="net_qty">NET QTY:</string>
+    <string name="p_l"><![CDATA[P&L:]]></string>
 </resources>
