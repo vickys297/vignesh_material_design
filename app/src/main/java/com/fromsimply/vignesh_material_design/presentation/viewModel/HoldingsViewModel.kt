@@ -48,8 +48,8 @@ class HoldingsViewModel @Inject constructor(
     val currentTodayPNLValue = _currentTodayPNLValue.asStateFlow()
 
     init {
+        refreshDataSource()
         viewModelScope.launch(Dispatchers.IO) {
-            launch { getHoldingListUseCase() }
             launch {
                 getCurrentValueUseCase().collectLatest {
                     _currentValue.value = it

@@ -154,7 +154,7 @@ fun HoldingsScreen() {
                                 state = pullToRefreshState,
                                 onRefresh = {
                                     isRefreshing.value = true
-                                    holdingList.refresh()
+                                    viewModel.refreshDataSource()
                                 }) {
                                 LazyColumn(modifier = Modifier.fillMaxSize()) {
                                     items(
