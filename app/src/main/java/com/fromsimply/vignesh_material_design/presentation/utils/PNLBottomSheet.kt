@@ -20,8 +20,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.dp
+import com.fromsimply.vignesh_material_design.R
 
 
 @Composable
@@ -42,7 +44,7 @@ fun PNLBottomPlaceholder(pnl: Double, expanded: MutableState<Boolean>) {
                 modifier = Modifier.weight(1f)
             ) {
                 Text(
-                    text = "Profit & Loss*",
+                    text = stringResource(R.string.profit_loss),
                     color = MaterialTheme.colorScheme.inverseSurface
                 )
                 Icon(
@@ -52,7 +54,7 @@ fun PNLBottomPlaceholder(pnl: Double, expanded: MutableState<Boolean>) {
                         Icons.Default.KeyboardArrowUp
                     },
                     tint = MaterialTheme.colorScheme.inverseSurface,
-                    contentDescription = "Expand description"
+                    contentDescription = stringResource(R.string.expand_description)
                 )
             }
             Text(
@@ -83,7 +85,7 @@ fun PNLBottomSheetView(
             Spacer(modifier = Modifier.padding(all = 0.dp))
             Row {
                 Text(
-                    text = "Current Value*", modifier = Modifier.weight(1f), style = TextStyle(
+                    text = stringResource(R.string.current_value), modifier = Modifier.weight(1f), style = TextStyle(
                         fontSize = MaterialTheme.typography.titleMedium.fontSize
                     ), color = MaterialTheme.colorScheme.inverseSurface
 
@@ -96,7 +98,7 @@ fun PNLBottomSheetView(
 
             Row {
                 Text(
-                    text = "Total Investment*", modifier = Modifier.weight(1f), style = TextStyle(
+                    text = stringResource(R.string.total_investment), modifier = Modifier.weight(1f), style = TextStyle(
                         fontSize = MaterialTheme.typography.titleMedium.fontSize
                     ), color = MaterialTheme.colorScheme.inverseSurface
 
@@ -109,7 +111,7 @@ fun PNLBottomSheetView(
 
             Row {
                 Text(
-                    text = "Today's Profit & Loss*",
+                    text = stringResource(R.string.today_s_profit_loss),
                     modifier = Modifier.weight(1f),
                     style = TextStyle(
                         fontSize = MaterialTheme.typography.titleMedium.fontSize

@@ -10,9 +10,10 @@ import java.util.Currency
 
 fun Double.getColorCode(): Color {
     return if (this > 0) {
-        Color.Green
+        Color(0xFF5CB338)
     } else Color.Red
 }
+
 
 @Composable
 fun Double.toCurrency(currencyCode: String = "INR"): String {
@@ -25,8 +26,11 @@ fun Double.toCurrency(currencyCode: String = "INR"): String {
 
         val symbols = formatter.decimalFormatSymbols
         val currencySymbol = currency.symbol
-
-        val pattern = "#,##0.00"
+        val pattern = if (currencyCode == "INR") {
+            "#,##,##0.00"
+        } else {
+            "#,##0.00"
+        }
         val numberFormatter = DecimalFormat(pattern, symbols)
         val formattedNumber = numberFormatter.format(this)
         "$currencySymbol $formattedNumber"

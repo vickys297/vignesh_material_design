@@ -34,7 +34,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.paging.LoadState
 import androidx.paging.compose.collectAsLazyPagingItems
 import com.airbnb.lottie.compose.LottieAnimation
@@ -52,7 +51,7 @@ import com.fromsimply.vignesh_material_design.presentation.utils.rememberNetwork
 import com.fromsimply.vignesh_material_design.presentation.viewModel.HoldingsViewModel
 
 @Composable
-fun HoldingsScreen(navController: NavHostController) {
+fun HoldingsScreen() {
     val viewModel = hiltViewModel<HoldingsViewModel>()
 
     val isNetworkConnected = rememberNetworkState()
@@ -128,7 +127,7 @@ fun HoldingsScreen(navController: NavHostController) {
                                         TextButton(onClick = {
                                             viewModel.refreshDataSource()
                                         }, modifier = Modifier.padding(top = 12.dp)) {
-                                            Text(text = "Refresh")
+                                            Text(text = stringResource(R.string.refresh))
                                         }
                                     }
                                 }
