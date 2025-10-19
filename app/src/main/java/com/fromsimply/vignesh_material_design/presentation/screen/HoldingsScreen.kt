@@ -12,12 +12,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeDrawingPadding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
@@ -114,6 +114,10 @@ fun HoldingsScreen() {
                                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                                     Text(
                                         text = stringResource(R.string.currently_you_do_not_have_holdings),
+                                        style = TextStyle.Default.copy(
+                                            fontSize = MaterialTheme.typography.titleLarge.fontSize,
+                                            fontWeight = FontWeight.SemiBold
+                                        ),
                                         textAlign = TextAlign.Center,
                                         modifier = Modifier.padding(24.dp)
                                     )
@@ -124,11 +128,23 @@ fun HoldingsScreen() {
                                     )
 
                                     if (isNetworkConnected) {
-                                        TextButton(onClick = {
+                                        FilledTonalButton(onClick = {
                                             viewModel.refreshDataSource()
-                                        }, modifier = Modifier.padding(top = 12.dp)) {
-                                            Text(text = stringResource(R.string.refresh))
+                                        }, modifier = Modifier.padding(top = 24.dp)) {
+                                            Text(
+                                                text = stringResource(R.string.refresh),
+
+                                                )
                                         }
+                                    } else {
+                                        Text(
+                                            text = stringResource(R.string.enable_mobile_data_to_sync_data),
+                                            modifier = Modifier.padding(top = 24.dp),
+                                            style = TextStyle.Default.copy(
+                                                fontSize = MaterialTheme.typography.titleMedium.fontSize,
+                                                fontWeight = FontWeight.SemiBold
+                                            )
+                                        )
                                     }
                                 }
                             }

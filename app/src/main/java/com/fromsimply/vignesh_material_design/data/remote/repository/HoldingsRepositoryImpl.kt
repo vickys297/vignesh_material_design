@@ -23,9 +23,16 @@ class HoldingsRepositoryImpl @Inject constructor(
 
     private val holdingDao = localDatabase.holdingsDao()
 
+    var inProgress: Boolean = false
+
     override suspend fun fetchUserHoldings(): Result<UserHolding> {
+        if (inProgress) {
+            return Result.failure(Exception("Request already in progress"))
+        }
         return try {
+            inProgress = true
             val response = api.fetchHoldings()
+            inProgress = false
             if (response.isSuccessful) {
                 response.body()?.data?.let { data ->
                     holdingDao.insertAll(data.userHolding.map { HoldingsMapper.fromDtoToEntity(it) })
@@ -36,19 +43,18 @@ class HoldingsRepositoryImpl @Inject constructor(
                 val errorBody = response.errorBody()?.string()
                 Log.e(TAG, "fetchUserHoldings: error >> ", Exception(errorBody))
                 Result.failure(
-                    Exception(
-                        "Something went wrong"
-                    )
+                    Exception("Something went wrong")
                 )
             }
         } catch (e: Exception) {
-            Log.e(TAG, "fetchUserHoldings: error >> ", e)
+            inProgress = false
             val errorMessage = when (e) {
                 is UnknownHostException -> "No internet connection or invalid host."
                 is SocketTimeoutException -> "Connection timed out."
                 is java.io.IOException -> "A network error occurred."
                 else -> "An unexpected error occurred."
             }
+            Log.e(TAG, "fetchUserHoldings: error >> $errorMessage")
             Result.failure(Exception(errorMessage, e))
         }
     }
